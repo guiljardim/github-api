@@ -46,7 +46,6 @@ android {
 dependencies {
     def core_ktx_version = '1.8.0'
     def appcompat_version = '1.4.2'
-    def mock_web_server_version = '4.10.0'
     def material_version = '1.6.1'
     def lifecycle_version = '2.5.0'
     def activity_ktx_version = '1.5.0'
@@ -62,6 +61,7 @@ dependencies {
     def okhttp_version = "5.0.0-alpha.2"
     def navigation_version = "2.5.0"
     def coil_version = "1.4.0"
+    def paging_version = "3.0.0"
 
 
     implementation "androidx.core:core-ktx:$core_ktx_version"
@@ -75,7 +75,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
 
-    //serialization
+    //moshi
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
 
 
@@ -92,6 +92,7 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_viewModel_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -106,5 +107,8 @@ dependencies {
 
     //coil
     implementation "io.coil-kt:coil:$coil_version"
+
+    //paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
 
 }
