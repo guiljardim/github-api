@@ -2,6 +2,11 @@ package com.example.github_api.di
 
 import com.example.github_api.BuildConfig.BASE_URL
 import com.example.github_api.BuildConfig.DEBUG
+import com.example.github_api.data.RepositoriesService
+import com.example.github_api.data.dataSource.RepositoriesRemoteDataSource
+import com.example.github_api.data.repository.RepositoriesListRepositoryImpl
+import com.example.github_api.domain.repository.RepositoriesListRepository
+import com.example.github_api.domain.useCase.GetRepositoryUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,4 +45,22 @@ class ApplicationModule {
             .baseUrl(BASE_URL)
             .client(okHttpClient)
             .build()
+
+    @Provides
+    fun provideRepositoriesService(retrofit: Retrofit): RepositoriesService =
+        retrofit.create(RepositoriesService::class.java)
+
+    @Provides
+    fun provideRepositoriesRemoteDataSource(repositoryService: RepositoriesService) =
+        RepositoriesRemoteDataSource(repositoryService)
+
+    @Provides
+    fun provideRepositoryListRepository(repositoryRemoteDataSource: RepositoriesRemoteDataSource): RepositoriesListRepository =
+        RepositoriesListRepositoryImpl(repositoryRemoteDataSource)
+
+    @Provides
+    fun provideGetRepositoryUseCase(repositoriesListRepository: RepositoriesListRepository) =
+        GetRepositoryUseCase(repositoriesListRepository)
+
+
 }
