@@ -11,6 +11,9 @@ data class RepositoriesResponse(
         val name: String,
         val full_name: String,
         val private: Boolean,
+        val description: String,
+        val forks_count: Int,
+        val stargazers_count: Int,
         val owner: OwnerResponse
     )
 

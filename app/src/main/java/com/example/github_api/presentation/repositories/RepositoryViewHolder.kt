@@ -11,6 +11,10 @@ class RepositoryViewHolder(
 
     fun bind(repository: Repository?) {
         binding.imageViewAvatar.load(repository?.owner?.avatar_url)
-        binding.textViewName.text = repository?.name
+        binding.textViewUsername.text = repository?.owner?.login
+        binding.textViewRepositoryName.text = repository?.full_name
+        binding.textViewRepositoryDescription.text = repository?.description
+        binding.textViewForks.text = repository?.forks.toString()
+        binding.textViewStars.text = repository?.stars.toString()
     }
 }

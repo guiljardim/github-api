@@ -5,6 +5,9 @@ data class Repository(
     val node_id: String,
     val name: String,
     val full_name: String,
+    val description: String?,
+    val stars: Int?,
+    val forks: Int?,
     val private: Boolean,
     val owner: Owner
 ) {

@@ -9,6 +9,9 @@ fun RepositoryResponse.mapRemoteRepositoryToDomain() = Repository(
     this.node_id,
     this.name,
     this.full_name,
+    this.description,
+    this.stargazers_count,
+    this.forks_count,
     this.private,
     Repository.Owner(
         this.owner.login,

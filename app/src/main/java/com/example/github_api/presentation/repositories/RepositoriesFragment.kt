@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.databinding.FragmentRepositoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +49,11 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun initView() {
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.recycleViewRepositories.context,
+            DividerItemDecoration.VERTICAL
+        )
+        binding.recycleViewRepositories.addItemDecoration(dividerItemDecoration)
         adapter = RepositoriesAdapter()
 
         binding.recycleViewRepositories.layoutManager = LinearLayoutManager(context)
