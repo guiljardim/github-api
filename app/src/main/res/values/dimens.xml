@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_start_card_view">40dp</dimen>
+    <dimen name="margin_top_card_view">20dp</dimen>
+    <dimen name="card_corner_radius">40dp</dimen>
+    <dimen name="margin_top_username">10dp</dimen>
+    <dimen name="margin_start_repository">60dp</dimen>
+    <dimen name="margin_end_repository">10dp</dimen>
+    <dimen name="text_size_title">16sp</dimen>
+    <dimen name="margin_image">20dp</dimen>
+</resources>
