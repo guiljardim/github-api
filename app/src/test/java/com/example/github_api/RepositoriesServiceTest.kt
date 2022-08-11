@@ -57,7 +57,7 @@ class RepositoryServiceTest {
 }
 
 
-fun getRepositoriesResponse() =
+private fun getRepositoriesResponse() =
     RepositoriesResponse(
         "20",
         false,
