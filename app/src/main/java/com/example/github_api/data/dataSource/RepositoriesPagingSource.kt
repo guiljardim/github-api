@@ -2,7 +2,7 @@ package com.example.github_api.data.dataSource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.github_api.data.RepositoriesService
+import com.example.github_api.data.api.RepositoriesService
 import com.example.github_api.data.model.RepositoriesResponse.RepositoryResponse
 import retrofit2.HttpException
 import java.io.IOException

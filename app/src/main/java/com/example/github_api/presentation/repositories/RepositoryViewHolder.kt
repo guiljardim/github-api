@@ -6,7 +6,7 @@ import com.example.github_api.databinding.ItemRepositoryBinding
 import com.example.github_api.domain.model.Repository
 
 class RepositoryViewHolder(
-    private val binding: ItemRepositoryBinding
+    val binding: ItemRepositoryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(repository: Repository?) {

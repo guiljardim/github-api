@@ -1,6 +1,6 @@
 package com.example.github_api
 
-import com.example.github_api.data.RepositoriesService
+import com.example.github_api.data.api.RepositoriesService
 import com.example.github_api.data.model.RepositoriesResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi

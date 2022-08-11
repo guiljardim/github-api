@@ -3,7 +3,7 @@ package com.example.github_api.data.dataSource
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.example.github_api.data.RepositoriesService
+import com.example.github_api.data.api.RepositoriesService
 import com.example.github_api.data.model.RepositoriesResponse.RepositoryResponse
 import kotlinx.coroutines.flow.Flow
 

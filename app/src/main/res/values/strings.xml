@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">github-api</string>
+    <string name="error">Houve um erro ao encontrar a lista de pull request</string>
 </resources>

@@ -21,17 +21,11 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RepositoriesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RepositoriesFragment()
-    }
-
     private var adapter: RepositoriesAdapter? = null
-
 
     private lateinit var binding: FragmentRepositoriesBinding
 
     private val viewModel: RepositoriesViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +37,13 @@ class RepositoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRepositories()
         initView()
         observe()
+    }
+
+    override fun onResume() {
+        viewModel.getRepositories()
+        super.onResume()
     }
 
     private fun initView() {
@@ -73,6 +71,7 @@ class RepositoriesFragment : Fragment() {
             }
         }
     }
+
 
     private fun renderUi(loadState: CombinedLoadStates) {
         val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0

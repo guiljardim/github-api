@@ -9,6 +9,27 @@
         android:id="@+id/repositories_fragment"
         android:name="com.example.github_api.presentation.repositories.RepositoriesFragment"
         android:label="deposit_information_fragment"
-        tools:layout="@layout/fragment_repositories" />
+        tools:layout="@layout/fragment_repositories">
+        <action
+            android:id="@+id/action_matches_fragment_to_matches_details_fragment"
+            app:destination="@id/pull_request_fragment">
+            <argument
+                android:name="owner"
+                android:defaultValue="owner"
+                app:argType="string" />
+            <argument
+                android:name="repository"
+                android:defaultValue="repository"
+                app:argType="string" />
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/pull_request_fragment"
+        android:name="com.example.github_api.presentation.pullRequest.PullRequestFragment"
+        android:label="deposit_information_fragment"
+        tools:layout="@layout/fragment_pull_request" />
+
 
 </navigation>
