@@ -9,24 +9,23 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.R
 import com.example.github_api.databinding.FragmentPullRequestBinding
 import com.example.github_api.domain.model.PullRequest
 import com.example.github_api.util.Resource
+import dagger.hilt.android.AndroidEntryPoint
 
 
 const val OWNER = "OWNER"
 const val REPOSITORY = "REPOSITORY"
 
+@AndroidEntryPoint
 class PullRequestFragment : Fragment() {
 
     private val viewModel: PullRequestViewModel by viewModels()
     private lateinit var binding: FragmentPullRequestBinding
-    private var pullRequestAdapter: PullRequestAdapter? = null
-    private lateinit var owner: String
-    private lateinit var repository: String
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,10 +38,19 @@ class PullRequestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observer()
+        initView()
         viewModel.getPullRequest(
             arguments?.getString(OWNER).toString(),
             arguments?.getString(REPOSITORY).toString()
         )
+    }
+
+    private fun initView() {
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.recycleViewPullRequests.context,
+            DividerItemDecoration.VERTICAL
+        )
+        binding.recycleViewPullRequests.addItemDecoration(dividerItemDecoration)
     }
 
     private fun observer() {
@@ -76,9 +84,8 @@ class PullRequestFragment : Fragment() {
 
 
     private fun createList(ListOfPullRequest: List<PullRequest>) {
-        pullRequestAdapter = context?.let { PullRequestAdapter(ListOfPullRequest) }
+        binding.recycleViewPullRequests.adapter = PullRequestAdapter(ListOfPullRequest)
         binding.recycleViewPullRequests.layoutManager = LinearLayoutManager(context)
-        binding.recycleViewPullRequests.adapter = pullRequestAdapter
 
     }
 }

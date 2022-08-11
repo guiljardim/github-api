@@ -6,7 +6,7 @@ import retrofit2.http.Path
 
 interface PullRequestsService {
 
-    @GET("/search/{owner}/{repository}/pulls")
+    @GET("/repos/{owner}/{repository}/pulls")
     suspend fun getPullRequest(
         @Path("owner") owner: String,
         @Path("repository") repository: String,

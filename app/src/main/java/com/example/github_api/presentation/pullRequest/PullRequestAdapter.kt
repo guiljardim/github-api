@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.github_api.databinding.ItemPullRequestBinding
 import com.example.github_api.domain.model.PullRequest
+import com.example.github_api.util.formatToDate
 
 class PullRequestAdapter(
     private var listOfPullRequest: List<PullRequest>?,
@@ -32,9 +33,10 @@ class PullRequestAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bindView(pullRequest: PullRequest?) {
-            with(binding) {
-
-            }
+            binding.textViewPullRequestTitle.text = pullRequest?.title
+            binding.textViewPullRequestBody.text = pullRequest?.body
+            binding.textViewPullRequestUsername.text = pullRequest?.login
+            binding.textViewPullRequestDate.text = pullRequest?.created_at?.formatToDate()
         }
     }
 }
