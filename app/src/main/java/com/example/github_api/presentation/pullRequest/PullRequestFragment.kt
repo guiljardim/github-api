@@ -83,8 +83,14 @@ class PullRequestFragment : Fragment() {
     }
 
 
-    private fun createList(ListOfPullRequest: List<PullRequest>) {
-        binding.recycleViewPullRequests.adapter = PullRequestAdapter(ListOfPullRequest)
+    private fun createList(listOfPullRequest: List<PullRequest>) {
+        if (listOfPullRequest.isEmpty()) {
+            Toast.makeText(context, getString(R.string.empty_state), Toast.LENGTH_SHORT)
+                .show()
+            findNavController().popBackStack()
+
+        }
+        binding.recycleViewPullRequests.adapter = PullRequestAdapter(listOfPullRequest)
         binding.recycleViewPullRequests.layoutManager = LinearLayoutManager(context)
 
     }
