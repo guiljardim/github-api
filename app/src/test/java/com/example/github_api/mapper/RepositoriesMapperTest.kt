@@ -1,4 +1,4 @@
-package com.example.github_api
+package com.example.github_api.mapper
 
 import com.example.github_api.data.mapper.mapRemoteRepositoryToDomain
 import com.example.github_api.data.model.RepositoriesResponse

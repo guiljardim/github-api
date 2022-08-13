@@ -1,4 +1,4 @@
-package com.example.github_api
+package com.example.github_api.service
 
 import com.example.github_api.data.api.RepositoriesService
 import com.example.github_api.data.model.RepositoriesResponse
