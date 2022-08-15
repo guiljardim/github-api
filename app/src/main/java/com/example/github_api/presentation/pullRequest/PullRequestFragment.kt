@@ -46,11 +46,19 @@ class PullRequestFragment : Fragment() {
     }
 
     private fun initView() {
+        binding.toolbarPullRequest.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         val dividerItemDecoration = DividerItemDecoration(
             binding.recycleViewPullRequests.context,
             DividerItemDecoration.VERTICAL
         )
         binding.recycleViewPullRequests.addItemDecoration(dividerItemDecoration)
+
+        binding.buttonBackEmptyState.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun observer() {
@@ -85,13 +93,12 @@ class PullRequestFragment : Fragment() {
 
     private fun createList(listOfPullRequest: List<PullRequest>) {
         if (listOfPullRequest.isEmpty()) {
-            Toast.makeText(context, getString(R.string.empty_state), Toast.LENGTH_SHORT)
-                .show()
-            findNavController().popBackStack()
-
+            binding.groupEmptyState.isVisible = true
+        } else {
+            binding.groupEmptyState.isVisible = false
+            binding.recycleViewPullRequests.layoutManager = LinearLayoutManager(context)
+            binding.recycleViewPullRequests.adapter = PullRequestAdapter(listOfPullRequest)
         }
-        binding.recycleViewPullRequests.adapter = PullRequestAdapter(listOfPullRequest)
-        binding.recycleViewPullRequests.layoutManager = LinearLayoutManager(context)
 
     }
 }

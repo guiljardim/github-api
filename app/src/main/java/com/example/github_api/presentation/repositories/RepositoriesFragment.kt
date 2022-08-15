@@ -13,8 +13,8 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.databinding.FragmentRepositoriesBinding
+import com.example.github_api.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -41,9 +41,10 @@ class RepositoriesFragment : Fragment() {
         observe()
     }
 
-    override fun onResume() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         viewModel.getRepositories()
-        super.onResume()
+
     }
 
     private fun initView() {
@@ -65,9 +66,13 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun observe() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRepositories().collectLatest { repository ->
-                repository?.let { adapter?.submitData(it) }
+        viewModel.repositories.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        it.data?.let { it1 -> adapter?.submitData(it1) }
+                    }
+                }
             }
         }
     }
