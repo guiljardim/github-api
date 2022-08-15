@@ -2,10 +2,15 @@ package com.example.github_api.di
 
 import com.example.github_api.BuildConfig.BASE_URL
 import com.example.github_api.BuildConfig.DEBUG
-import com.example.github_api.data.RepositoriesService
+import com.example.github_api.data.api.PullRequestsService
+import com.example.github_api.data.api.RepositoriesService
+import com.example.github_api.data.dataSource.PullRequestRemoteDataSource
 import com.example.github_api.data.dataSource.RepositoriesRemoteDataSource
+import com.example.github_api.data.repository.PullRequestRepositoryImpl
 import com.example.github_api.data.repository.RepositoriesListRepositoryImpl
+import com.example.github_api.domain.repository.PullRequestRepository
 import com.example.github_api.domain.repository.RepositoriesListRepository
+import com.example.github_api.domain.useCase.GetPullRequestUseCase
 import com.example.github_api.domain.useCase.GetRepositoryUseCase
 import dagger.Module
 import dagger.Provides
@@ -51,16 +56,32 @@ class ApplicationModule {
         retrofit.create(RepositoriesService::class.java)
 
     @Provides
+    fun providePullRequestService(retrofit: Retrofit): PullRequestsService =
+        retrofit.create(PullRequestsService::class.java)
+
+    @Provides
     fun provideRepositoriesRemoteDataSource(repositoryService: RepositoriesService) =
         RepositoriesRemoteDataSource(repositoryService)
+
+    @Provides
+    fun providePullRequestRemoteDataSource(pullRequestsService: PullRequestsService) =
+        PullRequestRemoteDataSource(pullRequestsService)
 
     @Provides
     fun provideRepositoryListRepository(repositoryRemoteDataSource: RepositoriesRemoteDataSource): RepositoriesListRepository =
         RepositoriesListRepositoryImpl(repositoryRemoteDataSource)
 
     @Provides
+    fun providePullRequestRepository(pullRequestRemoteDataSource: PullRequestRemoteDataSource): PullRequestRepository =
+        PullRequestRepositoryImpl(pullRequestRemoteDataSource)
+
+    @Provides
     fun provideGetRepositoryUseCase(repositoriesListRepository: RepositoriesListRepository) =
         GetRepositoryUseCase(repositoriesListRepository)
+
+    @Provides
+    fun provideGetPullRequestUseCase(pullRequestRepository: PullRequestRepository) =
+        GetPullRequestUseCase(pullRequestRepository)
 
 
 }

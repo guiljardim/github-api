@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
@@ -9,14 +10,14 @@
         android:layout_width="@dimen/width_card_view_avatar"
         android:layout_height="@dimen/height_card_view_avatar"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="@dimen/margin_start_card_view"
+        android:layout_marginTop="@dimen/margin_top_card_view"
         android:elevation="@dimen/elevation_card_view_avatar"
         android:innerRadius="0dp"
         android:shape="rectangle"
         android:thicknessRatio="1.9"
         app:cardBackgroundColor="@color/gray"
-        app:cardCornerRadius="40dp"
+        app:cardCornerRadius="@dimen/card_corner_radius"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -33,9 +34,9 @@
         android:id="@+id/text_view_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="username"
-        android:textColor="#240faa"
+        android:layout_marginTop="@dimen/margin_top_username"
+        android:textColor="@color/text_color_title"
+        tools:text="username"
         app:layout_constraintLeft_toLeftOf="@id/avatar"
         app:layout_constraintRight_toRightOf="@id/avatar"
         app:layout_constraintTop_toBottomOf="@id/avatar" />
@@ -44,7 +45,7 @@
         android:id="@+id/text_view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nome e Sobrenome"
+        tools:text="Nome e Sobrenome"
         app:layout_constraintLeft_toLeftOf="@id/text_view_username"
         app:layout_constraintRight_toRightOf="@id/text_view_username"
         app:layout_constraintTop_toBottomOf="@id/text_view_username" />
@@ -52,12 +53,15 @@
 
     <TextView
         android:id="@+id/text_view_repository_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:text="Nome do Repositorio"
-        app:layout_constraintBottom_toBottomOf="@id/avatar"
+        android:layout_marginStart="@dimen/margin_start_repository"
+        android:layout_marginEnd="@dimen/margin_end_repository"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/avatar"
+        tools:text="Nome do Repositorio"
         app:layout_constraintTop_toTopOf="@id/avatar" />
 
 
@@ -65,9 +69,39 @@
         android:id="@+id/text_view_repository_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Descrição do repositorio lorem ipsum de teste blablablablabalbal"
+        android:ellipsize="end"
+        tools:text="Descrição do repositorio lorem ipsum de teste blablablablabalbal"
         app:layout_constraintLeft_toLeftOf="@id/text_view_repository_name"
         app:layout_constraintRight_toRightOf="@id/text_view_repository_name"
         app:layout_constraintTop_toBottomOf="@id/text_view_repository_name" />
+
+
+    <TextView
+        android:id="@+id/text_view_forks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_image"
+        android:layout_marginBottom="@dimen/margin_image"
+        android:textColor="@color/yellowDark"
+        app:drawableLeftCompat="@drawable/ic_git_fork"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/text_view_repository_description"
+        app:layout_constraintTop_toBottomOf="@id/text_view_repository_description"
+        tools:text="430" />
+
+    <TextView
+        android:id="@+id/text_view_stars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_image"
+        android:layout_marginBottom="@dimen/margin_image"
+        android:gravity="center"
+        android:textColor="@color/yellowDark"
+        app:drawableLeftCompat="@drawable/ic_star__1_"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/text_view_forks"
+        app:layout_constraintRight_toRightOf="@id/text_view_repository_description"
+        app:layout_constraintTop_toBottomOf="@id/text_view_repository_description"
+        tools:text="25" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

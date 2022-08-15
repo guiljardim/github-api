@@ -1,4 +1,4 @@
-package com.example.github_api.data
+package com.example.github_api.data.api
 
 import com.example.github_api.data.model.RepositoriesResponse
 import retrofit2.http.GET

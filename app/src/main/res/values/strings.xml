@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">github-api</string>
+    <string name="error">Houve um erro ao encontrar a lista de pull request</string>
+    <string name="empty_state">Esse usuário não possue pull requests abertos</string>
+    <string name="no_pull_requests">Oops....No Pull Requests</string>
+    <string name="body_empty_state">This repository not has pull requests…sorry</string>
+    <string name="back">BACK</string>
+    <string name="pull_requests">Pull Requests</string>
 </resources>

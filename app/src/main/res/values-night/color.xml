@@ -8,14 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#C4C4C4</color>
-    <color name="text_color_title">#240faa</color>
+    <color name="text_color_title">#add8e6</color>
     <color name="yellowDark">#8B8000</color>
     <color name="dark_gray">#161616</color>
     <color name="button_text_color">@color/white</color>
-    <color name="button_background">@color/black</color>
-    <color name="body_empty_text">#D3D3D3</color>
-    <color name="title_app_bar">@color/white</color>
-    <color name="app_bar_background">@color/black</color>
-    <color name="top_bar">@color/white</color>
+    <color name="title_app_bar">@color/black</color>
+    <color name="app_bar_background">@color/white</color>
+
 
 </resources>

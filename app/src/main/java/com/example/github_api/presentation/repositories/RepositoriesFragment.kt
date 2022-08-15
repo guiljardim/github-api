@@ -10,27 +10,22 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github_api.databinding.FragmentRepositoriesBinding
+import com.example.github_api.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class RepositoriesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = RepositoriesFragment()
-    }
-
     private var adapter: RepositoriesAdapter? = null
-
 
     private lateinit var binding: FragmentRepositoriesBinding
 
     private val viewModel: RepositoriesViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,12 +37,22 @@ class RepositoriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getRepositories()
         initView()
         observe()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getRepositories()
+
+    }
+
     private fun initView() {
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.recycleViewRepositories.context,
+            DividerItemDecoration.VERTICAL
+        )
+        binding.recycleViewRepositories.addItemDecoration(dividerItemDecoration)
         adapter = RepositoriesAdapter()
 
         binding.recycleViewRepositories.layoutManager = LinearLayoutManager(context)
@@ -61,12 +66,17 @@ class RepositoriesFragment : Fragment() {
     }
 
     private fun observe() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRepositories().collectLatest { repository ->
-                repository?.let { adapter?.submitData(it) }
+        viewModel.repositories.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        it.data?.let { it1 -> adapter?.submitData(it1) }
+                    }
+                }
             }
         }
     }
+
 
     private fun renderUi(loadState: CombinedLoadStates) {
         val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter?.itemCount == 0
