@@ -11,4 +11,9 @@
     <color name="text_color_title">#add8e6</color>
     <color name="yellowDark">#8B8000</color>
     <color name="dark_gray">#161616</color>
+    <color name="button_text_color">@color/white</color>
+    <color name="title_app_bar">@color/black</color>
+    <color name="app_bar_background">@color/white</color>
+
+
 </resources>
